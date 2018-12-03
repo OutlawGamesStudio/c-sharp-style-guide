@@ -454,9 +454,7 @@ Debug.Log($"{m_FirstName} {m_LastName}");
 
 ## Credits
 
-This style guide is a collaborative effort from the most stylish
-raywenderlich.com team members:
-
+### RayWenderlich
 - [Darryl Bayliss](https://github.com/DarrylBayliss)
 - [Sam Davies](https://github.com/sammyd)
 - [Mic Pringle](https://github.com/micpringle)
@@ -464,3 +462,5 @@ raywenderlich.com team members:
 - [Ray Wenderlich](https://github.com/rwenderlich)
 - [Eric Van de Kerckhove](https://github.com/BlackDragonBE)
 
+### Outlaw Games Studio
+- [Sean McElholm](https://github.com/BlackDragonBE)
