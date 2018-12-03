@@ -11,6 +11,7 @@ This style guide is based on C# and Unity conventions.
 ## Table of Contents
 
 - [Nomenclature](#nomenclature)
+  + [Script Files](#script-files)
   + [Namespaces](#namespaces)
   + [Classes & Interfaces](#classes--interfaces)
   + [Methods](#methods)
@@ -24,6 +25,7 @@ This style guide is based on C# and Unity conventions.
   + [Fields & Variables](#fields--variables)
   + [Classes](#classes)
   + [Interfaces](#interfaces)
+  + [Enums](#enums)
 - [Spacing](#spacing)
   + [Indentation](#indentation)
   + [Line Length](#line-length)
@@ -38,6 +40,22 @@ This style guide is based on C# and Unity conventions.
 ## Nomenclature
 
 On the whole, naming should follow C# standards, see [Here](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions).
+
+### Script Files
+
+Namespaces are all **PascalCase**, multiple words concatenated together, without hyphens ( - ) or underscores ( \_ ). The exception to this rule are acronyms like GUI or HUD, which can be uppercase:
+
+**BAD**:
+
+```csharp
+com.outlawgamesstudio.fpsgame.hud.healthbar
+```
+
+**GOOD**:
+
+```csharp
+OutlawGamesStudio.FPSGame.HUD.Healthbar
+```
 
 ### Namespaces
 
@@ -214,6 +232,20 @@ findPostById
 
 Access level modifiers should be explicitly defined for classes, methods and member variables.
 
+**BAD:**
+
+```csharp
+string m_Word;
+int m_Id;
+```
+
+**GOOD:**
+
+```csharp
+protected string m_Word;
+private int m_Id;
+```
+
 ### Fields & Variables
 
 Prefer single declaration per line.
@@ -249,6 +281,31 @@ RadialSlider
 
 ```csharp
 IRadialSlider
+```
+
+## Enums
+
+Enums should always be declared inline.
+
+**BAD:**
+
+```csharp
+enum Days
+{
+    Mon,
+    Tue,
+    Wed,
+    Thu,
+    Fri,
+    Sat,
+    Sun
+};
+```
+
+**GOOD:**
+
+```csharp
+enum Days {Mon, Tue, Wed, Thu, Fri, Sat, Sun};
 ```
 
 ## Spacing
@@ -450,6 +507,57 @@ Debug.Log(m_FirstName + " " + m_LastName);
 string m_DisplayName = $"{m_FirstName} {m_LastName}";
 Debug.Log($"{m_FirstName} {m_LastName}");
 ```
+
+# GameManager and Services
+
+All games will only use one global object called "GameManager" which will contain a variety of services. These services will be referenced by other scripts using the C# singleton variable.
+
+## Creating a service
+
+Creating a service, you would create a new MonoBehaviour class like you would any other way. You must then add a singleton variable into the class name. You should also add the suffix Service to the class name, like `ClassNameService`.
+
+```csharp
+private static ClassNameService m_Instance;
+
+public static ClassNameService Instance
+{
+    get
+    {
+        return = m_Instance;
+    }
+}
+
+private void Awake()
+{
+    if(m_Instance == null)
+    {
+        m_Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+}
+
+private void OnDestroy()
+{
+    if(m_Instance == this)
+    {
+        m_Instance = null;
+    }
+}
+```
+
+## Accessing a service
+
+Accessing a service in a script, you must make a reference to the service.
+
+```csharp
+private ClassNameService m_ClassNameService;
+
+private void Start()
+{
+    m_ClassNameService = ClassNameService.Instance;
+}
+```
+
 
 ## Credits
 
