@@ -32,7 +32,6 @@ This style guide is based on C# and Unity conventions.
 - [Switch Statements](#switch-statements)
 - [Language](#language)
 - [Copyright Statement](#copyright-statement)
-- [Smiley Face](#smiley-face)
 - [Credit](#credits)
 
 
