@@ -463,4 +463,4 @@ Debug.Log($"{m_FirstName} {m_LastName}");
 - [Eric Van de Kerckhove](https://github.com/BlackDragonBE)
 
 ### Outlaw Games Studio
-- [Sean McElholm](https://github.com/BlackDragonBE)
+- [Sean McElholm](https://github.com/seanny)
